@@ -56,7 +56,7 @@ export async function POST(request: Request) {
       const newUser = new UserModel({
         username,
         email,
-        hashedPassword,
+        password: hashedPassword,
         verifyCode,
         verifyCodeExpiry: expiryDate,
         isVerified: false,
@@ -87,7 +87,7 @@ export async function POST(request: Request) {
 
     return Response.json(
       {
-        success: false,
+        success: true,
         message: "User registered Successfully Please verify your emailid",
       },
       {
