@@ -6,32 +6,36 @@ import { Button } from "./ui/button";
 
 const NavBar = () => {
   const { data: session } = useSession();
-
   const user: User = session?.user as User;
 
   return (
-    <nav className="p-4 md:p-6 shadow-md">
-      <div
-        className="container mx-auto flex flex-col 
-      md:flex-row justify-between items-center"
-      >
-        <a className="text-xl font-bold mb-4 md:mb-0" href="#">
+    <nav className="p-4 md:p-6 bg-white shadow-md border-b border-gray-200">
+      <div className="container mx-auto flex flex-col md:flex-row justify-between items-center gap-4">
+        <a className="text-2xl font-semibold text-gray-800 hover:text-gray-600 transition-all" href="#">
           Message Feedback
         </a>
-        {session ? (
-          <>
-            <span className="mr-4">
-              Welcome, {user?.username || user?.email}
-            </span>
-            <Button className="w-full md:w-auto" onClick={() => signOut()}>
-              Logout
-            </Button>
-          </>
-        ) : (
-          <Link href="/sign-in">
-            <Button className="w-full md:w-auto">Login</Button>
-          </Link>
-        )}
+
+        <div className="flex items-center space-x-4">
+          {session ? (
+            <>
+              <span className="text-gray-600 text-sm md:text-base">
+                Welcome, <strong>{user?.username || user?.email}</strong>
+              </span>
+              <Button 
+                className="w-full md:w-auto bg-red-500 hover:bg-red-600 transition-all"
+                onClick={() => signOut()}
+              >
+                Logout
+              </Button>
+            </>
+          ) : (
+            <Link href="/sign-in">
+              <Button className="w-full md:w-auto bg-blue-500 hover:bg-blue-600 transition-all">
+                Login
+              </Button>
+            </Link>
+          )}
+        </div>
       </div>
     </nav>
   );
