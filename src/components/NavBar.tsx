@@ -21,6 +21,12 @@ const NavBar = () => {
         <div className="flex items-center space-x-4">
           {session ? (
             <>
+             <Link href="/dashboard">
+                <Button className="bg-red-500 hover:bg-red-600 transition-all">
+                  Dashboard
+                </Button>
+              </Link>
+
               <Link href={`/u/${user?.username || "defaultUser"}`}>
                 <Button className="bg-green-500 hover:bg-green-600 transition-all">
                   Send Message

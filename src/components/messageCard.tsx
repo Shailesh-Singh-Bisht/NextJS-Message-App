@@ -5,10 +5,7 @@ import { toast } from "sonner";
 import {
   Card,
   CardContent,
-  CardDescription,
-  CardFooter,
   CardHeader,
-  CardTitle,
 } from "@/components/ui/card";
 
 import {
@@ -52,37 +49,34 @@ const MessageCard = ({ message, onMessageDelete }: MessageCardProps) => {
   };
 
   return (
-    <Card>
-      <CardHeader>
-        <CardTitle></CardTitle>
+    <Card className="p-4 shadow-md border border-gray-300">
+      <CardHeader className="flex justify-between items-center">
+        <h3 className="text-lg font-semibold">{"Anonymous"}</h3>
 
         <AlertDialog>
           <AlertDialogTrigger asChild>
-            <Button variant="destructive">
+            <Button variant="destructive" size="sm">
               <X className="w-5 h-5" />
             </Button>
           </AlertDialogTrigger>
           <AlertDialogContent>
             <AlertDialogHeader>
-              <AlertDialogTitle>Are you absolutely sure?</AlertDialogTitle>
+              <AlertDialogTitle>Delete Message?</AlertDialogTitle>
               <AlertDialogDescription>
-                This action cannot be undone. This will permanently delete your
-                account and remove your data from our servers.
+                Are you sure you want to delete this message? This action cannot be undone.
               </AlertDialogDescription>
             </AlertDialogHeader>
             <AlertDialogFooter>
               <AlertDialogCancel>Cancel</AlertDialogCancel>
               <AlertDialogAction onClick={handleDeleteConfirm}>
-                Continue
+                Delete
               </AlertDialogAction>
             </AlertDialogFooter>
           </AlertDialogContent>
         </AlertDialog>
-
-        <CardDescription>Card Description</CardDescription>
       </CardHeader>
-      <CardContent></CardContent>
-      <CardFooter></CardFooter>
+
+      <CardContent className="text-gray-800">{message.content || "No content available."}</CardContent>
     </Card>
   );
 };
