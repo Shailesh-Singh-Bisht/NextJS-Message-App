@@ -5,7 +5,7 @@ import UserModel from "@/model/User";
 import mongoose from "mongoose";
 import { NextRequest, NextResponse } from "next/server";
 
-export async function DELETE(req: NextRequest, { params }: { params: { messageid: string } }) {
+export async function DELETE(req: NextRequest) {
   await dbConnect();
 
   const session = await getServerSession(authOptions);
@@ -13,7 +13,9 @@ export async function DELETE(req: NextRequest, { params }: { params: { messageid
     return NextResponse.json({ success: false, message: "Not Authenticated" }, { status: 401 });
   }
 
-  const { messageid } = params; // Extract messageid from params
+  // Extract `messageid` from request URL
+  const url = new URL(req.url);
+  const messageid = url.pathname.split("/").pop(); // Get last part of URL
 
   if (!messageid || !mongoose.Types.ObjectId.isValid(messageid)) {
     return NextResponse.json({ success: false, message: "Invalid Message ID" }, { status: 400 });
