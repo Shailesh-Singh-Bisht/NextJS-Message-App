@@ -11,17 +11,27 @@ const NavBar = () => {
   return (
     <nav className="p-4 md:p-6 bg-white shadow-md border-b border-gray-200">
       <div className="container mx-auto flex flex-col md:flex-row justify-between items-center gap-4">
-        <a className="text-2xl font-semibold text-gray-800 hover:text-gray-600 transition-all" href="#">
+        <Link
+          href="/"
+          className="text-2xl font-semibold text-gray-800 hover:text-gray-600 transition-all"
+        >
           Message Feedback
-        </a>
+        </Link>
 
         <div className="flex items-center space-x-4">
           {session ? (
             <>
+              <Link href={`/u/${user?.username || "defaultUser"}`}>
+                <Button className="bg-green-500 hover:bg-green-600 transition-all">
+                  Send Message
+                </Button>
+              </Link>
+
               <span className="text-gray-600 text-sm md:text-base">
                 Welcome, <strong>{user?.username || user?.email}</strong>
               </span>
-              <Button 
+
+              <Button
                 className="w-full md:w-auto bg-red-500 hover:bg-red-600 transition-all"
                 onClick={() => signOut()}
               >
