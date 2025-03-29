@@ -60,7 +60,7 @@ const SignIn = () => {
       <div className="w-full max-w-md p-8 space-y-8 bg-white rounded-lg shadow-md">
         <div className="text-center">
           <h1 className="text-4xl font-extrabold tracking-tight lg:text-5xl mb-6">
-            Join True Feedback
+            Join Message Feedback
           </h1>
           <p className="mb-4">Sign In to start your anonymous adventure</p>
         </div>
