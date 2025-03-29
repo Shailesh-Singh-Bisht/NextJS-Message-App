@@ -38,10 +38,15 @@ const SignIn = () => {
       });
 
       if (result?.error) {
-        toast.error("Login Failed", {
-          description: "Incorrect username or password", // ✅ Fixed typo
-        });
-        return; // ✅ Prevents further execution if login fails
+        if (result.error === "CredentialsSignin") {
+          toast.success("Login Failed", {
+            description: "Incorrect username or password",
+          });
+        } else {
+          toast.error("Error", {
+            description: result.error,
+          });
+        }
       }
 
       if (result?.url) {
@@ -86,7 +91,11 @@ const SignIn = () => {
                 <FormItem>
                   <FormLabel>Password</FormLabel>
                   <FormControl>
-                    <Input type="password" placeholder="Enter your password" {...field} /> 
+                    <Input
+                      type="password"
+                      placeholder="Enter your password"
+                      {...field}
+                    />
                   </FormControl>
                   <FormMessage />
                 </FormItem>
